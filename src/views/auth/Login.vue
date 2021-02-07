@@ -23,7 +23,7 @@
                 <button type="submit" class="btn-login" @click.prevent="goLogin">Sign In</button>
             </div>
             <div class="form-group">
-                <router-link style="display: flex; justify-content: center; margin-bottom: 16px;" to="/auth/register">Signup</router-link>
+                <router-link style="display: flex; justify-content: center; margin-bottom: 16px; width: max-content" to="/auth/register">Signup</router-link>
                 <p class="forgot-password">Did you forgot your password?</p>
                 <router-link to="/auth/forgot-password"><p class="reset-password">Tap here for reset</p></router-link>
                 <hr>
