@@ -23,8 +23,9 @@
                 <button type="submit" class="btn-login" @click.prevent="goLogin">Sign In</button>
             </div>
             <div class="form-group">
+                <router-link style="display: flex; justify-content: center; margin-bottom: 16px;" to="/auth/register">Signup</router-link>
                 <p class="forgot-password">Did you forgot your password?</p>
-                <p class="reset-password">Tap here for reset</p>
+                <router-link to="/auth/forgot-password"><p class="reset-password">Tap here for reset</p></router-link>
                 <hr>
                 <h5>or sign in with</h5>
                 <div class="button-group">
@@ -195,7 +196,9 @@ export default {
 
 .form-box form .form-group .button-group {
     display: flex;
+    justify-content: center;
     margin-top: 30px;
+    width: 100%;
 }
 
 .form-box form .form-group .button-group .btn-google,
@@ -206,7 +209,7 @@ export default {
     box-sizing: border-box;
     border-radius: 6px;
     background: none;
-    margin: 10px auto;
+    margin: 10px;
 }
 
 @media (max-width: 1085px) {

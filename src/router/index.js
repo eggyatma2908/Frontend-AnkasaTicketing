@@ -29,6 +29,8 @@ const routes = [
     path: '/auth',
     name: 'Auth',
     component: Auth,
+    redirect: '/auth/login',
+    meta: { requiresVisitor: true },
     children: [
       {
         path: 'login',
@@ -60,6 +62,8 @@ const routes = [
     path: '/main',
     name: 'Main',
     component: Main,
+    redirect: '/auth/login',
+    meta: { requiresAuth: true },
     children: [
       {
         path: 'search-result',
@@ -121,7 +125,6 @@ router.beforeEach((to, from, next) => {
       })
     } else {
       const role = localStorage.getItem('role')
-      console.log('isi role', role)
       if (to.matched.some(record => record.meta.requiresAdmin)) {
         if (role === 'admin') {
           next()

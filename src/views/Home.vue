@@ -339,7 +339,8 @@ main .box-search .destination-country {
 }
 
 main .box-search .destination-country img {
-  margin-left: 80px
+  margin-left: 80px;
+  width: 17px;
 }
 
 main .box-search .destination-country .from,
@@ -439,6 +440,7 @@ main .box-search .how-many .box-person .adult h6 {
 
 main .box-search .departure .box-date img {
   margin-left: 120px;
+  width: 20px;
 }
 
 main .box-search .how-many .box-person {
@@ -463,6 +465,7 @@ main .box-search .how-many .box-person .adult {
 main .box-search .how-many .box-person .child img,
 main .box-search .how-many .box-person .adult img {
   margin-left: 50px;
+  width: 20px;
 }
 
 main .box-search .class-airline {
@@ -487,10 +490,6 @@ main .box-search button {
   color: #FFFFFF;
   border: none;
   margin-top: 10px;
-}
-
-main .box-search img {
-  margin-left: 50px;
 }
 
 main section {

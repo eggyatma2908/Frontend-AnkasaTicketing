@@ -33,7 +33,7 @@
                 <div class="col-lg-4">
                     <div class="title1">
                         <p class="text">Filter</p>
-                        <button class="reset">Reset</button>
+                        <button @click="reloadPage" class="reset">Reset</button>
                     </div>
                     <div class="boxfilter">
                         <div class="filter">
@@ -178,6 +178,9 @@ export default {
   },
   methods: {
     ...mapActions(['getSchedules']),
+    reloadPage () {
+      window.location.reload()
+    },
     handleClick () {
       this.$router.push({ path: `/main/search-result?transit=${this.transit || ''}&facility=${this.facility || ''}&airline=${this.airline || ''}` })
         .catch(() => {
