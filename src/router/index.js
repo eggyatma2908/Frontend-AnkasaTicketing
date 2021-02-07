@@ -23,6 +23,7 @@ const routes = [
     path: '/',
     name: 'LandingPage',
     component: LandingPage,
+    redirect: '/auth/login',
     meta: { requiresVisitor: true }
   },
   {
