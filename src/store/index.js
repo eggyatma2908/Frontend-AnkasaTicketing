@@ -33,6 +33,14 @@ export default new Vuex.Store({
         state.password.type = 'password'
       }
     },
+    togglePassword1 (state) {
+      state.password = document.getElementById('repassword')
+      if (state.password.type === 'password') {
+        state.password.type = 'text'
+      } else {
+        state.password.type = 'password'
+      }
+    },
     set_user (state, payload) {
       state.users = payload
       state.id = payload.id
@@ -95,7 +103,6 @@ export default new Vuex.Store({
             resolve(res)
           })
           .catch(err => {
-            console.log(err)
             reject(err)
           })
       })
@@ -105,7 +112,6 @@ export default new Vuex.Store({
         axios.post(`${process.env.VUE_APP_URL_BACKEND}/users/login`, payload)
           .then(res => {
             const result = res.data.data
-            console.log(result)
             localStorage.setItem('id', result.id)
             localStorage.setItem('token', result.token)
             localStorage.setItem('role', result.role)
@@ -122,7 +128,6 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         axios.patch(`${process.env.VUE_APP_URL_BACKEND}/users/${payload.id}`, payload)
           .then(res => {
-            console.log(payload)
             Swal.fire({
               icon: 'success',
               title: 'Profile has been updated',
@@ -142,19 +147,15 @@ export default new Vuex.Store({
       })
     },
     updateAvatar ({ dispatch }, payload) {
-      console.log(payload.get('avatar'))
       return new Promise((resolve, reject) => {
         axios.patch(`${process.env.VUE_APP_URL_BACKEND}/users/${payload.get('id')}`, payload)
           .then(res => {
-            console.log(payload)
             Swal.fire({
               icon: 'success',
               title: 'Your picture has been updated',
               showConfirmButton: false,
               timer: 1500
             })
-            console.log(res.data)
-
             dispatch('getUserById')
           })
           .catch(err => {
@@ -164,7 +165,6 @@ export default new Vuex.Store({
               showConfirmButton: false,
               timer: 1500
             })
-            console.log(err.response.data)
             reject(err)
           })
       })
@@ -184,7 +184,6 @@ export default new Vuex.Store({
             resolve(result)
           })
           .catch(err => {
-            console.log(err)
             reject(err)
           })
       })
@@ -207,7 +206,6 @@ export default new Vuex.Store({
         axios.post(`${process.env.VUE_APP_URL_BACKEND}/tickets`, payload)
           .then(res => {
             const result = res.data
-            console.log(result)
             Swal.fire({
               icon: 'success',
               title: 'Success',
@@ -226,7 +224,6 @@ export default new Vuex.Store({
         axios.get(`${process.env.VUE_APP_URL_BACKEND}/tickets/my-booking/${payload}`)
           .then(res => {
             const result = res.data.myBookings.tickets
-            console.log('isi get ticket', result)
             context.commit('set_ticket', result)
             resolve(result)
           })
@@ -240,7 +237,6 @@ export default new Vuex.Store({
         axios.get(`${process.env.VUE_APP_URL_BACKEND}/tickets/history/${localStorage.getItem('id')}`)
           .then(res => {
             const result = res.data.history.tickets
-            console.log('DATA GET HISTORY :', result)
             context.commit('SET_HISTORY', result)
             resolve(result)
           })
@@ -311,10 +307,17 @@ export default new Vuex.Store({
               showConfirmButton: false,
               timer: 1500
             })
+            router.push('/auth/login')
             resolve(res)
           })
           .catch(err => {
-            reject(err.response.data)
+            Swal.fire({
+              icon: 'error',
+              title: 'Email not found',
+              showConfirmButton: false,
+              timer: 1500
+            })
+            reject(err)
           })
       })
     },
@@ -374,7 +377,6 @@ export default new Vuex.Store({
         }
         return response
       }, function (error) {
-        console.log(error.response)
         if (error.response.data.status === 'Failed') {
           if (error.response.data.message === 'email already exists') {
             Swal.fire({

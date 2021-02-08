@@ -215,7 +215,6 @@ export default {
   mounted () {
     this.getUserById()
     this.getParamsSchedule()
-    console.log(this.scheduleById)
   },
   computed: {
     ...mapGetters(['userProfile', 'scheduleById'])

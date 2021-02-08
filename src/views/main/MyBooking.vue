@@ -74,7 +74,6 @@ export default {
     ...mapActions(['getUserById', 'logout', 'getTicket']),
     myTicket () {
       const id = localStorage.getItem('id')
-      console.log('id di my booking', id)
       this.getTicket(id)
     },
     goLogout () {
@@ -88,8 +87,7 @@ export default {
           })
           this.$router.push('/auth/login')
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
         })
     },
     setDate (date) {

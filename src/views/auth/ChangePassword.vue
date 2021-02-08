@@ -8,17 +8,18 @@
     <div class="form-box">
         <h1>Change Password</h1>
         <form>
-            <div class="form-group">
+            <div class="form-group" style="position: relative">
                 <input type="password" id="password" v-model.trim="$v.password.$model" :class="{ 'is-invalid': validationStatus($v.password) }" class="form-control icon-password" placeholder="Password">
                 <input type="checkbox" class="toggle-password" @click="togglePassword">
                 <div class="invalid-feedback" v-if="!$v.password.required">Field is required.</div>
                 <div class="invalid-feedback" v-if="!$v.password.minLength">Field must have at least {{ $v.password.$params.minLength.min }} characters.</div>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="position: relative">
                 <input type="password" id="repassword" v-model.trim="$v.repassword.$model" :class="{ 'is-invalid': validationStatus($v.repassword) }" class="form-control icon-password" placeholder="Re - Password">
-                <input type="checkbox" class="toggle-password" @click="togglePassword">
+                <input type="checkbox" class="toggle-password1" @click="togglePassword1">
                 <div class="invalid-feedback" v-if="!$v.repassword.required">Field is required.</div>
                 <div class="invalid-feedback" v-if="!$v.repassword.minLength">Field must have at least {{ $v.repassword.$params.minLength.min }} characters.</div>
+                <div class="invalid-feedback" v-if="!$v.repassword.sameAsPassword">Passwords must be identical</div>
             </div>
             <div class="form-group">
                 <button type="submit" class="btn-register" @click.prevent="changePasswordMethod">Change Password</button>
@@ -33,7 +34,7 @@
 
 <script>
 import { mapMutations, mapActions } from 'vuex'
-import { required, minLength } from 'vuelidate/lib/validators'
+import { required, minLength, sameAs } from 'vuelidate/lib/validators'
 export default {
   name: 'ChangePassword',
   data () {
@@ -44,7 +45,7 @@ export default {
   },
   validations: {
     password: { required, minLength: minLength(6) },
-    repassword: { required, minLength: minLength(6) }
+    repassword: { required, minLength: minLength(6), sameAsPassword: sameAs('password') }
   },
   methods: {
     ...mapActions(['changePassword']),
@@ -59,10 +60,9 @@ export default {
         password: this.password
       }
       await this.changePassword(payload)
-      await console.log(payload)
       await this.$router.push('/auth/login')
     },
-    ...mapMutations(['togglePassword'])
+    ...mapMutations(['togglePassword', 'togglePassword1'])
   }
 }
 </script>
@@ -127,9 +127,12 @@ export default {
     background-position: right;
 }
 
-.form-box form .form-group .toggle-password {
+.form-box form .form-group .toggle-password,
+.form-box form .form-group .toggle-password1 {
     position: absolute;
-    top: 259px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
     right: 0;
     opacity: 0;
 }

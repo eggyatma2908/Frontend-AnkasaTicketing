@@ -214,7 +214,6 @@ export default {
     this.getSchedules({
       keyword: this.$route.query.keyword || ''
     })
-    console.log(this.pagination)
   }
 }
 </script>

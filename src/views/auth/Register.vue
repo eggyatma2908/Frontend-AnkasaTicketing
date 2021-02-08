@@ -28,12 +28,12 @@
             </div>
             <div class="form-group">
                 <div class="item-checkbox">
-                    <input type="checkbox">
+                    <input type="checkbox" id="accept">
                     <p>Accept terms and condition</p>
                 </div>
                 <hr>
                 <h5>Already have an account?</h5>
-                <button type="submit" class="btn-login" @click.prevent="goLogin">Sign In</button>
+                <button type="submit" class="btn-login" @click="goLogin">Sign In</button>
             </div>
         </form>
     </div>
@@ -43,6 +43,8 @@
 <script>
 import { mapMutations, mapActions } from 'vuex'
 import { required, minLength, email } from 'vuelidate/lib/validators'
+import Swal from 'sweetalert2'
+
 export default {
   name: 'Register',
   data () {
@@ -63,19 +65,27 @@ export default {
       return typeof validation !== 'undefined' ? validation.$error : false
     },
     goRegister () {
-      this.$v.$touch()
-      if (this.$v.$pendding || this.$v.$error) return
-      const payload = {
-        fullName: this.fullName,
-        email: this.email,
-        password: this.password
+      if (!document.getElementById('accept').checked) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Please checklist accept terms and condition',
+          showConfirmButton: false,
+          timer: 2000
+        })
+      } else {
+        this.$v.$touch()
+        if (this.$v.$pendding || this.$v.$error) return
+        const payload = {
+          fullName: this.fullName,
+          email: this.email,
+          password: this.password
+        }
+        this.register(payload)
+          .then(() => {
+          })
+          .catch(() => {
+          })
       }
-      this.register(payload)
-        .then(() => {
-        })
-        .catch(err => {
-          console.log(err)
-        })
     },
     goLogin () {
       this.$router.push('/auth/login')

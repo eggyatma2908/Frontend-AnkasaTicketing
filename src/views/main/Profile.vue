@@ -110,6 +110,7 @@ export default {
     goLogout () {
       this.logout()
         .then(() => {
+          localStorage.removeItem('vuex')
           Swal.fire({
             icon: 'success',
             title: 'Logout',
@@ -118,8 +119,7 @@ export default {
           })
           this.$router.push('/auth/login')
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
         })
     },
     editProfile () {
@@ -131,16 +131,12 @@ export default {
         address: this.address,
         postCode: this.postCode
       }
-
-      console.log(payload)
-
       this.updateProfile(payload)
       this.getUserById()
     },
     uploadPhoto (event) {
       const form = new FormData()
       const image = event.target.files[0]
-      // console.log(image)
       form.append('avatar', image, image.name)
       form.append('id', localStorage.getItem('id'))
       this.updateAvatar(form)

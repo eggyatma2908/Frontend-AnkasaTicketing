@@ -193,13 +193,10 @@ export default {
         transit: this.transit,
         facilities: this.facilities
       }
-      console.log(payload)
       this.addSchedule(payload)
-        .then(res => {
-          console.log(res)
+        .then(() => {
         })
-        .catch(err => {
-          console.log(err)
+        .catch(() => {
         })
     }
   },

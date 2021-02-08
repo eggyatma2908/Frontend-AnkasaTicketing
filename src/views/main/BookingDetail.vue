@@ -77,7 +77,6 @@ export default {
     ...mapActions(['getDetailTicket']),
     myDetailTicket () {
       const id = this.$route.params.ticketId
-      console.log('id ticket', id)
       this.getDetailTicket(id)
     },
     setDate (date) {
@@ -89,7 +88,6 @@ export default {
   },
   mounted () {
     this.myDetailTicket()
-    console.log(this.detailTicket)
   }
 }
 </script>
