@@ -14,7 +14,7 @@ https://github.com/renaldipratama97/Frontend-AnkasaTicketing.git
 npm install
 
 3. Add .env file at root folder project, and add following
-VUE_APP_URL_BACKEND = [backend api]
+VUE_APP_URL_BACKEND = [Backend API]
 ```
 # Screenshots
 <div display="flex" align="center">
@@ -26,6 +26,10 @@ VUE_APP_URL_BACKEND = [backend api]
 <img src="https://user-images.githubusercontent.com/26200397/104166205-017a8400-542d-11eb-96ed-8cf5c7d9cdb2.png" width="300">
 <img src="https://user-images.githubusercontent.com/26200397/104165156-90869c80-542b-11eb-807b-f2adbe33a9d0.png" width="300">
  </div>
+
+# Related Project
+https://github.com/eggyatma2908/Backend-AnkasaTicketing
+
 
 # Author
 This project was built by :
