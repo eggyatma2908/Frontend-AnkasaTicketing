@@ -2,7 +2,7 @@
 This is a frontend ticketing project created using vue JS, in which it has several pages such as user profiles, airline ticket search, airline ticket booking, ticket booking details, flight details, scheduling for admin and ticket booking history.
 
 ## Requirements
-* **[Vue cli](https://cli.vuejs.org/guide/installation.html)**
+* **[Vue CLI](https://cli.vuejs.org/guide/installation.html)**
 * **[Backend Ankasa Ticketing](https://github.com/syauqeesy/ankasa-ticketing-api)**
 
 # Installation
